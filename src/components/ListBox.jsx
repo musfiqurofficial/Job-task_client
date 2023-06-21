@@ -16,7 +16,7 @@ export default function MyModal({ isOpen, closeModal, optionsData, editData }) {
 
     try {
       const response = await fetch(
-        `http://localhost:5001/api/data/${editData._id}`,
+        `https://job-task-server-psi.vercel.app/api/data/${editData._id}`,
         {
           method: "PUT",
           headers: {

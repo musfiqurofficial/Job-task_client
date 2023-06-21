@@ -103,13 +103,16 @@ const Home = () => {
     };
 
     try {
-      const response = await fetch("http://localhost:5001/api/data", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
+      const response = await fetch(
+        "https://job-task-server-psi.vercel.app/api/data",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      );
 
       const responseData = await response.json();
       console.log(responseData);
@@ -125,7 +128,7 @@ const Home = () => {
 
   const handleDelete = async (dataId) => {
     try {
-      await fetch(`http://localhost:5001/api/data/${dataId}`, {
+      await fetch(`https://job-task-server-psi.vercel.app/api/data/${dataId}`, {
         method: "DELETE",
       });
 
@@ -136,7 +139,7 @@ const Home = () => {
   };
 
   useEffect(() => {
-    fetch("http://localhost:5001/api/data")
+    fetch("https://job-task-server-psi.vercel.app/api/data")
       .then((res) => res.json())
       .then((data) => setAllData(data));
   }, [deletedDataId]);
@@ -204,7 +207,10 @@ const Home = () => {
       <div className="my-5 lg:my-0 md:w-[80%] mx-auto px-4">
         <div className="grid md:grid-cols-2 row-gap-8 lg:grid-cols-3 2xl:grid-cols-4 gap-6">
           {allData.map(({ _id, name, selectedOptions }) => (
-            <div key={_id} className="shadow-md bg-[#f7f7f7f7] p-5 text-center md:text-start">
+            <div
+              key={_id}
+              className="shadow-md bg-[#f7f7f7f7] p-5 text-center md:text-start"
+            >
               <h6 className="mb-1">
                 Name:{" "}
                 <span className="font-bold font-mono text-lg">{name}</span>
